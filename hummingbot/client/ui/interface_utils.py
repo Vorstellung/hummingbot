@@ -7,6 +7,7 @@ from typing import (
 import psutil
 import datetime
 import asyncio
+import json
 from hummingbot.model.trade_fill import TradeFill
 from hummingbot.client.performance import calculate_performance_metrics, smart_round
 
@@ -71,6 +72,18 @@ async def start_trade_monitor(trade_monitor):
                     avg_return = sum(return_pcts) / len(return_pcts) if len(return_pcts) > 0 else s_decimal_0
                     total_pnls = sum(pnls)  # Note that this sum doesn't handles cases with different multiple pairs for simplisity
                     trade_monitor.log(f"Trades: {total_trades}, Total P&L: {smart_round(total_pnls)} {quote_asset}, Return %: {avg_return:.2%}")
+                    
+                    # Here we write the P&L to a file
+                    data_set = {}
+                    data_set['trades']=total_trades
+                    data_set['total_pnl']=str(smart_round(total_pnls))+" " +quote_asset
+                    data_set['return']=str(avg_return)
+
+                    with open('data/totals.json', 'w') as outfile:
+                        json.dump(data_set, outfile)
+                    
+
+                    
                     return_pcts.clear()
                     pnls.clear()
         await asyncio.sleep(2)  # sleeping for longer to manage resources
