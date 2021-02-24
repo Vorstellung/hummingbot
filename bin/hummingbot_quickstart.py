@@ -33,7 +33,7 @@ from bin.hummingbot import (
 )
 from hummingbot.client.settings import CONF_FILE_PATH
 from hummingbot.client.config.security import Security
-from hummingbot.client.alphahawk_interface import start_the_server
+from alphahawk_interface import start_the_server
 
 
 class CmdlineParser(argparse.ArgumentParser):
