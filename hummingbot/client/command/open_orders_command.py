@@ -69,4 +69,4 @@ class OpenOrdersCommand:
         self._notify("\n" + "\n".join(lines))
         self._notify(f"\n  Total: $ {total_value:.0f}")
         with open('data/open_orders.txt', 'w') as outfile:
-            json.dump("\n".join(lines), outfile)
+            outfile.write("\n".join(lines))

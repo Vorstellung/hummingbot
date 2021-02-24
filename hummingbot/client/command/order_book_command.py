@@ -57,5 +57,5 @@ class OrderBookCommand:
         else:
             self._notify(get_order_book(lines))
             with open('data/order_book.txt', 'w') as outfile:
-                json.dump("\n".join(lines), outfile)
+                outfile.write("\n".join(lines))
 

@@ -134,6 +134,7 @@ dependencies:
     - python-binance==0.7.5
     - python-telegram-bot==12.4.2
     - pyyaml==5.3
+    - quart==0.14.1
     - regex==2020.2.20
     - requests==2.23.0
     - rlp==1.2.0

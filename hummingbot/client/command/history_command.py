@@ -184,7 +184,7 @@ class HistoryCommand:
 
         self._notify("\n".join(lines))
         with open('data/history.txt', 'w') as outfile:
-            json.dump("\n".join(lines), outfile)
+            outfile.write("\n".join(lines))
 
     async def calculate_profitability(self,  # type: HummingbotApplication
                                       ) -> Decimal:
