@@ -161,7 +161,8 @@ def main():
           ],
           scripts=[
               "bin/hummingbot.py",
-              "bin/hummingbot_quickstart.py"
+              "bin/hummingbot_quickstart.py",
+              "bin/alpahawk_interface.py"
           ],
           )
 
