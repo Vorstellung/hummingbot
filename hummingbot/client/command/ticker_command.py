@@ -56,3 +56,5 @@ class TickerCommand:
             self._notify("Stopped live ticker display update.")
         else:
             self._notify(get_ticker())
+            with open('data/ticker.txt', 'w') as outfile:
+                json.dump("\n".join(lines), outfile)

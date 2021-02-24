@@ -67,3 +67,5 @@ class OpenOrdersCommand:
         lines.extend(["    " + line for line in orders_df.to_string(index=False).split("\n")])
         self._notify("\n" + "\n".join(lines))
         self._notify(f"\n  Total: $ {total_value:.0f}")
+        with open('data/open_orders.txt', 'w') as outfile:
+            json.dump("\n".join(lines), outfile)

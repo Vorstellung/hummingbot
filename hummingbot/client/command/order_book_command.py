@@ -55,3 +55,6 @@ class OrderBookCommand:
             self._notify("Stopped live orderbook display update.")
         else:
             self._notify(get_order_book(lines))
+            with open('data/order_book.txt', 'w') as outfile:
+                json.dump("\n".join(lines), outfile)
+

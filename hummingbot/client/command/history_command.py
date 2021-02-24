@@ -1,4 +1,5 @@
 from decimal import Decimal
+import json
 import pandas as pd
 import threading
 import time
@@ -182,6 +183,8 @@ class HistoryCommand:
                      ["    " + line for line in perf_df.to_string(index=False, header=False).split("\n")])
 
         self._notify("\n".join(lines))
+        with open('data/history.txt', 'w') as outfile:
+            json.dump("\n".join(lines), outfile)
 
     async def calculate_profitability(self,  # type: HummingbotApplication
                                       ) -> Decimal:

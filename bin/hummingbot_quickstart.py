@@ -33,6 +33,7 @@ from bin.hummingbot import (
 )
 from hummingbot.client.settings import CONF_FILE_PATH
 from hummingbot.client.config.security import Security
+from hummingbot.client.alphahawk_interface import start_the_server
 
 
 class CmdlineParser(argparse.ArgumentParser):
@@ -67,6 +68,8 @@ async def quick_start(args):
     config_file_name = args.config_file_name
     wallet = args.wallet
     password = args.config_password
+
+    app_interface = start_the_server()
 
     if args.auto_set_permissions is not None:
         autofix_permissions(args.auto_set_permissions)
