@@ -70,3 +70,4 @@ class OpenOrdersCommand:
         self._notify(f"\n  Total: $ {total_value:.0f}")
         with open('data/open_orders.txt', 'w') as outfile:
             outfile.write("\n".join(lines))
+            outfile.write(f"\n  Total: $ {total_value:.0f}")

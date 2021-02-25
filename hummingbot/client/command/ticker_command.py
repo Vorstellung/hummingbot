@@ -58,4 +58,4 @@ class TickerCommand:
         else:
             self._notify(get_ticker())
             with open('data/ticker.txt', 'w') as outfile:
-                outfile.write("\n".join(lines))
+                outfile.write(get_ticker())
