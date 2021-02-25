@@ -135,7 +135,8 @@ class StatusCommand:
                     )
                 self._notify("Stopped live status display update.")
             else:
-                self._notify(await self.strategy_status())
+                #self._notify(await self.strategy_status())
+                await self.strategy_status()
             return True
 
         # Preliminary checks.
