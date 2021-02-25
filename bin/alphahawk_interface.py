@@ -4,10 +4,11 @@ from flask import request
 
 app = Flask(__name__)
 import asyncio
-
+import time
 import logging
 log = logging.getLogger('werkzeug')
 log.disabled = True
+from hummingbot.core.utils.async_utils import safe_ensure_future
 
 from hummingbot.client.hummingbot_application import HummingbotApplication
 
@@ -16,7 +17,7 @@ async def handle_command(command):
     try:
         await hb._handle_command(command)
     except:
-        print("")
+        pass
 
     if command == "status":
         try:
@@ -44,14 +45,14 @@ def start_ah_interface():
     app.run(host='0.0.0.0',port=80,use_reloader=False)
     return "OK"
 
-def constant_status():
+async def constant_status():
     while True:
-        asyncio.run(handle_command("status"))
+        await handle_command("status")
         await asyncio.sleep(1)
 
 def start_the_server():
     print("starting the flask system")
     threading.Thread(target=start_ah_interface, name="Flask Server").start()
-    threading.Thread(target=constant_status, name="Constant Status").start()
-    
-    
+    safe_ensure_future(constant_status())
+
+
