@@ -80,6 +80,9 @@ class StatusCommand:
         status = paper_trade + "\n" + st_status + "\n" + app_warning
         if self._script_iterator is not None:
             self._script_iterator.request_status()
+        
+        with open('data/status.txt', 'w') as outfile:
+            outfile.write(status)
         return status
 
     def application_warning(self):

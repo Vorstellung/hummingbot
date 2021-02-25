@@ -16,7 +16,21 @@ async def handle_command(command):
     try:
         await hb._handle_command(command)
     except:
-        print("Caught it.")
+        print("")
+
+    if command == "status":
+        try:
+            with open('data/status.txt', 'r') as f:
+                return(f.read())
+        except:
+            return("Not started.")
+
+    if command == "exit":
+        try:
+            with open('data/status.txt', 'w') as outfile:
+                outfile.write("Stopped.")
+        except:
+            print("")
 
     return "OK"
 
